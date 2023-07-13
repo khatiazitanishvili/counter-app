@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2>Counter: {{ counterValue }}</h2>
+    <ul>
+      <li v-for="timestamp in timestampHistory" :key="timestamp">{{ timestamp }}</li>
+    </ul>
     <button @click="increaseCounter">Increment</button>
   </div>
 </template>
@@ -19,7 +22,7 @@ export default {
   },
   methods: {
     fetchCounterValue() {
-      fetch('http://localhost:3000/counter')
+      fetch('http://localhost:3000')
         .then((response) => response.json())
         .then((data) => {
           this.counterValue = data.counter;
