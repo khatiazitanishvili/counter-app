@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 let counter = 0;
@@ -40,9 +40,9 @@ app.post('/counter/increase', (req: Request, res: Response) => {
 
     wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify({ type: 'counterUpdate', counter }));
+            client.send(JSON.stringify({ type: 'counterUpdate', counter, timestampHistory }));
         }
     });
 
-    res.json({ counter });
+    res.json({ counter, timestampHistory });
 });

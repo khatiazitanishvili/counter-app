@@ -1,9 +1,6 @@
 <template>
   <div>
     <h2>Counter: {{ counterValue }}</h2>
-    <ul>
-      <li v-for="timestamp in timestampHistory" :key="timestamp">{{ timestamp }}</li>
-    </ul>
     <button @click="increaseCounter">Increment</button>
   </div>
 </template>
@@ -13,7 +10,6 @@ export default {
   data() {
     return {
       counterValue: 0,
-      timestampHistory: [],
     };
   },
   mounted() {
@@ -26,7 +22,6 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.counterValue = data.counter;
-          this.timestampHistory = data.timestampHistory;
         })
         .catch((error) => {
           console.error('Error fetching counter value:', error);
@@ -37,7 +32,6 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.counterValue = data.counter;
-          // No need to update timestampHistory here since it's not shown to the user
         })
         .catch((error) => {
           console.error('Error increasing counter:', error);
@@ -50,7 +44,6 @@ export default {
         const data = JSON.parse(event.data);
         if (data.type === 'counterUpdate') {
           this.counterValue = data.counter;
-          // No need to update timestampHistory here since it's not shown to the user
         }
       };
     },
