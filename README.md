@@ -39,7 +39,7 @@ In the project server directory, you can run:
 - The web application will display the current counter value.
 - Click the "Increment" button to increase the counter.
 
-![Server Screenshot](./client/src/assets/client.png.png)
+![Client Screenshot](./client/src/assets/client.png)
 
 
 
